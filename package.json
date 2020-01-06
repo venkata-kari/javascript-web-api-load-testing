@@ -1,0 +1,26 @@
+{
+  "name": "puppeteer-e2e-tests",
+  "version": "1.0.0",
+  "description": "WEB UI TESTS",
+  "license": "UNLICENSED",
+  "private": true,
+  "scripts": {
+    "test": "yarn create-report-folder && yarn run-cucumber-tests && yarn generate-cucumber-reports",
+    "create-report-folder": "mkdir -p reports",
+    "run-cucumber-tests": "DEBUG=true cucumber-js web/features/**/*.feature --require web/features/step_definitions/**/*.js --require web/features/support/hooks.js --tags=@test --format json:./reports/cucumber-report.json --exit",
+    "generate-cucumber-reports": "node cucumber-html-reports.js && cat ./reports/cucumber-report.json | cucumber-junit > ./reports/puppeteer-junit.xml"
+  },
+  "dependencies": {
+    "chai": "^4.2.0",
+    "chance": "^1.0.18",
+    "fs-extra": "^8.1.0",
+    "luxon": "^1.9.0",
+    "node-fetch": "^2.3.0",
+    "puppeteer": "2.0.0"
+  },
+  "devDependencies": {
+    "cucumber": "5.0.2",
+    "cucumber-html-reporter": "4.0.4",
+    "cucumber-junit": "^1.7.1"
+  }
+}
